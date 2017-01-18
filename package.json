@@ -1,0 +1,18 @@
+{
+  "name": "trading_machine_clien_server",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "michel",
+  "contributors": [],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
