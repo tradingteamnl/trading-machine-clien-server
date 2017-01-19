@@ -3,7 +3,7 @@ var async = require('async');
 var fs = require('fs');
 
 //load bittrex
-var bittrex = require('./bittrexApi.js');
+var bittrex = require('./node.bittrex.api/node.bittrex.api.js');
 
 //balance
 var balance = {};
@@ -14,8 +14,8 @@ var config = JSON.parse(fs.readFileSync("./config.json"));
 
 //configure
 bittrex.options({
-		'apikey' : config.bittrex.apikey,
-		'apisecret' : config.bittrex.apisecret,
+		'apikey' : 'a44647f1dc9946b9b85bf3ed9018da42',
+		'apisecret' : '7cdb26fc6cab414aa3cac41ce5ed4550',
 		'stream' : true,
 		'verbose' : false,
 		'cleartext' : false
