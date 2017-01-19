@@ -1,8 +1,8 @@
 {
-    "bittre": {
-        "url": "https://bittrex.com/api/v1.1",
+    "bittrex": {
+        "url": "https://bittrex.com/api/v1",
         "verbose": false,
         "cleartext": false,
-        "stream": false
+        "stream": true
     }
 }

@@ -3,11 +3,11 @@
 var request = require('request');
 var fs = require('fs');
 var hmac_sha512 = require('./hmac-sha512.js');
-    //JSONStream = require('JSONStream'),
-    //es = require('event-stream');
+var JSONStream = require('JSONStream');
+var es = require('event-stream');
 
-var autoConfig = JSON.parse(fs.readFileSnyc("./autoConfig.json"));
-var config = JSON.parse(fs.readFileSnyc("./config.json"));
+var autoConfig = JSON.parse(fs.readFileSync("./autoConfig.json"));
+var config = JSON.parse(fs.readFileSync("./config.json"));
 
 //NodeBittrexApi
 var NodeBittrexApi = function() {
@@ -23,12 +23,12 @@ var NodeBittrexApi = function() {
     };
 
     var opts = {
-        baseUrl: autoConfig.url,
+        baseUrl: autoConfig.bittrex.url,
         apikey: config.bittrex.apiKey,
         apisecret: config.bittrex.apiSecretKey,
-        verbose: autoConfig.verbose,
-        cleartext: autoConfig.cleartext,
-        stream: autoConfig.stream
+        verbose: true,
+        cleartext: true,
+        stream: true
     };
 
     var getNonce = function() {
