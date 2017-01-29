@@ -7,6 +7,9 @@ var consoleColors = require('./consoleCorlor');
 //app
 var app = express();
 
+//load bittrex
+require('./core/balance.js');
+
 //start server
 app.listen(8090, function(){
     console.log(consoleColors.log()+"Server is opgestart.");
