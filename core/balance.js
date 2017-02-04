@@ -5,9 +5,10 @@ var fs = require('fs');
 //config
 var autoConfig = JSON.parse(fs.readFileSync("./autoConfig.json"));
 var config = JSON.parse(fs.readFileSync("./config.json"));
+var fileLocation = JSON.parse(fs.readFileSync("./temp/fileLocation.txt")).file;
 
 //load scripts
-var bittrex = require('./node.bittrex.api/node.bittrex.api.js');
+var bittrex = require(fileLocation+'/node.bittrex.api/node.bittrex.api.js');
 var ConsoleColor = require(fileLocation+'/ConsoleColor.js');
 
 //configure
@@ -20,7 +21,7 @@ bittrex.options({
 });
 
 //Time reload
-//setInterval(function() {
+setInterval(function() {
 	
     //Request balance
     bittrex.getbalances( function( totaal_balance ) {
@@ -78,5 +79,4 @@ bittrex.options({
             });   
         } 
     });
-//}, 60000);
-
+}, 60000);
