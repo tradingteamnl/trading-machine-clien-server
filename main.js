@@ -1,16 +1,17 @@
 //load modules
-var express = require('express');
+var fs = require('fs');
+var installer = require('./Installer.js');
+var ConsoleColor = require('./ConsoleColor.js');
 
-//load codes
-var consoleColors = require('./consoleCorlor');
-
-//app
-var app = express();
-
-//load bittrex
-require('./core/balance.js');
-
-//start server
-app.listen(8090, function(){
-    console.log(consoleColors.log()+"Server is opgestart.");
+//kijk of location file bestaat
+fs.exists('./temp/fileLocation.txt',function(exists){
+    if(!exists){
+        installer.fileLocationInstall();
+    }
 });
+
+//wacht 2 minuten zodat alles netjes aangemaakt kan worden
+setTimeout(function(){
+    console.log(ConsoleColor.log()+"Installer is compleet.");
+    require('./Client.js');
+}, 10000);

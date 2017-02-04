@@ -2,12 +2,13 @@
 var request = require('request');
 var fs = require('fs');
 
-//load bittrex
-var bittrex = require('./node.bittrex.api/node.bittrex.api.js');
-
 //config
 var autoConfig = JSON.parse(fs.readFileSync("./autoConfig.json"));
 var config = JSON.parse(fs.readFileSync("./config.json"));
+
+//load scripts
+var bittrex = require('./node.bittrex.api/node.bittrex.api.js');
+var ConsoleColor = require(fileLocation+'/ConsoleColor.js');
 
 //configure
 bittrex.options({
@@ -28,7 +29,7 @@ bittrex.options({
         var data = totaal_balance;
         
         if(data.success == false){
-            console.error(consoleColors.error()+"Er is een probleem om bittrex balance op te vragen.");
+            console.error(ConsoleColor.error()+"Er is een probleem om bittrex balance op te vragen.");
         } else {
             //memorydatabase
             var memoryDB = [];
@@ -61,7 +62,7 @@ bittrex.options({
             // Configure the request
             // http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/updatebalance
             var options = {
-                url: 'http://192.168.31.130:8080/api/updatebalance',
+                url: 'http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/updatebalance',
                 method: 'POST',
                 headers: headers,
                 form: memoryDB
