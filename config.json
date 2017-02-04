@@ -1,14 +1,19 @@
 {
-	"bittrex": {
-"apiKey":"a44647f1dc9946b9b85bf3ed9018da42",
-"apiSecretKey":"7cdb26fc6cab414aa3cac41ce5ed4550"
-}
+    "bittrex": {
+        "apiKey":"a44647f1dc9946b9b85bf3ed9018da42",
+        "apiSecretKey":"7cdb26fc6cab414aa3cac41ce5ed4550",
+        "stream": true,
+        "verbose" : false,
+        "cleartext" : false
+    },
+    
     "hostPoort": {
         "poort": "8090"
     },
     
     "hostConnection": {
+        "protocall": "htpp",
         "ip": "192.168.31.130",
         "poort": "8080"
-    },
+    }
 }
