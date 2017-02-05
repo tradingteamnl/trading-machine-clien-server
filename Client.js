@@ -2,7 +2,7 @@
 var express = require('express');
 
 //load codes
-var consoleColors = require('./ConsoleCorlor');
+var consoleColors = require('./ConsoleCorlor.js');
 
 //app
 var app = express();
