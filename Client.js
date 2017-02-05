@@ -1,8 +1,15 @@
 //load modules
 var express = require('express');
+var fs = require('fs');
+
+//krijg filelocation
+var fileLocation = JSON.parse(fs.readFileSync('./config.json')).fileLocatoin;
 
 //load codes
-var consoleColors = require('./ConsoleCorlor.js');
+var consoleColors = require(fileLocation+'/ConsoleColor.js');
+
+//laat config
+var config = JSON.parse(fs.readFileSync(fileLocation+'/config.json'));
 
 //app
 var app = express();
@@ -11,6 +18,6 @@ var app = express();
 require('./core/balance.js');
 
 //start server
-app.listen(8090, function(){
+app.listen(config.hostPoort.poort, function(){
     console.log(consoleColors.log()+"Server is opgestart.");
 });
