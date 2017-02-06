@@ -20,43 +20,19 @@ var settingOrdersPoloniex = config.orders.poloniex;
 //get orders settings
 function makesqlReuqest(){
     
-    //var sql
-    var sqlQuery = "SELECT * FROM orderLimiet";
-    var finalSqlQuery = "SELECT * FROM orderLimiet";
+    //memory db
+    var sendOpdracht = [];
     
-    //settingOrderBittrex
-    if(settingOrdersBittrex == true){
-        
-        if(sqlQuery == finalSqlQuery) {
-            sqlQuery += " WHERE handelsplaats='bittrex'";      
-        } else {
-            sqlQuery += " AND handelsplaats='bittrex";
-        }
-    };
+    sendOpdracht.push(JSON.stringify({
+        'bittrex': config.orders.bittrex,
+        'poloniex': config.orders.poloniex
+    }));
     
-    //settingOrderPoloniex
-    if(settingOrdersPoloniex == true){
-        
-        if(sqlQuery == finalSqlQuery) {
-            sqlQuery += " WHERE handelsplaats='poloniex'";
-        } else {
-            sqlQuery += " AND handelsplaats='poloniex";
-        }
-    };
-    
-    
-    //kijk of de sql string is aangepast
-    //zo nee doe dan niks
-    if (sqlQuery != finalSqlQuery){
-        console.log(sqlQuery);
-        //request(sqlQuery);
-    }
-    console.log("test "+sqlQuery);
-    console.log('http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/ordersSqlQuery');
+    sendDataNaarDeServer(sendOpdracht);
 }
 
 //request
-function request(sqlQuery){
+function sendDataNaarDeServer(sendOpdracht){
     
     // Set the headers
     var headers = {
@@ -69,7 +45,7 @@ function request(sqlQuery){
         url: 'http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/ordersSqlQuery',
         method: 'POST',
         headers: headers,
-        form: sqlQuery
+        form: sendOpdracht
     };
 
     // Start the request
@@ -80,7 +56,7 @@ function request(sqlQuery){
             makeOrder(body);
             
         } else{
-            console.eroor(ConsoleColor.error()+"Er is een probleem om de sql te sturen naar de server. Probleem bij order.js.");
+            console.error(ConsoleColor.error()+"Er is een probleem om de sql te sturen naar de server. Probleem bij order.js.");
         }
     });
 }

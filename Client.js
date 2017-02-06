@@ -3,7 +3,7 @@ var express = require('express');
 var fs = require('fs');
 
 //krijg filelocation
-var fileLocation = JSON.parse(fs.readFileSync('./config.json')).fileLocatoin;
+var fileLocation = JSON.parse(fs.readFileSync('./temp/fileLocation.txt', 'utf8')).fileLocation;
 
 //load codes
 var consoleColors = require(fileLocation+'/ConsoleColor.js');
