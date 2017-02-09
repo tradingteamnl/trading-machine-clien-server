@@ -53,16 +53,92 @@ function sendDataNaarDeServer(sendOpdracht){
         if (!error && response.statusCode == 200) {
             
             //send data door naar makeOrder function
-            makeOrder(body);
-            
+            console.log(body);
+            for (i = 0; i < body.length; i++) { 
+                    
+                //hier laat het systeem de buy kant
+                if(body[i].markttype == "buy"){
+                    
+                    var exportMemory= {
+
+                        //maak een variable
+                        id: body[i].id,
+                        handelsplaats: body[i].handelsplaats,
+                        coin: body[i].coin,
+                        markttype: body[i].markttype,
+                        prioriteit: body[i].prioriteit,
+                        prijs: body[i].prijs,
+                        hoeveelheid: body[i].hoeveelheid,
+                        markt: body[i].markt,
+                        maxCoinOnBalance: body[i].limiet,
+                        besteprijs: body[i].besteprijs
+                    };
+                } 
+                
+                //hier laat het systeem de sell kant
+                if(body[i].markttype =="sell"){
+
+                    var exportMemory= {
+                        //maak een variable
+                        id: body[i].id,
+                        handelsplaats: body[i].handelsplaats,
+                        coin: body[i].coin,
+                        markttype: body[i].markttype,
+                        prioriteit: body[i].prioriteit,
+                        prijs: body[i].prijs,
+                        hoeveelheid: body[i].hoeveelheid,
+                        markt: body[i].markt,
+                        maxCoinOnBalance: body[i].limiet,
+                        besteprijs: body[i].besteprijs
+                    };
+                }
+                
+                //geef variable door naar getBalance als het systeem gewoon de opgeven prijs moet handhaven
+                if(besteprijs == 0){
+                    getBalance(exportMemory);
+                } else if(besteprijs == 5){
+                    besteprijs(exportMemory);
+                } else {
+                    console.log(ConsoleColor.error()+"Er is een fout in de software.");
+                    console.log(ConsoleColor.error()+"De opgeven optie voor beste prijs kan niet worden gevonden in het database.");
+                }
+            }
         } else{
+            console.log(error);
             console.error(ConsoleColor.error()+"Er is een probleem om de sql te sturen naar de server. Probleem bij order.js.");
         }
     });
 }
 
+//functie op uittereken wat de beste prijs is voor het moment
+function besteprijs(exportMemory){
+    
+    
+    
+}
+
+//function vraag balance data op
+function getBalance(){
+    
+};
+
+//verwerkt data
+function dataVerwerken(exportMemory){
+    
+    var data = exportMemory;
+    
+    
+    
+    
+    
+}
+
+
+
+
 //verwerkt request data
 function makeOrder (body){
+    
     
 };
 
