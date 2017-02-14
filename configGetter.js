@@ -12,6 +12,11 @@ exports.postURL = function(){
     return config.hostConnection.protocall+'://'+config.hostConnection.ip+':'+config.hostConnection.poort;
 };
 
+//getter voor de server url
+exports.serverURL = function(){
+    return config.hostConnection.protocall+'://'+config.hostConnection.ip+':'+config.hostConnection.poort;
+};
+
 //bittrex request data
 exports.bittrexOptions = function(){
     

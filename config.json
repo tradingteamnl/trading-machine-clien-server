@@ -12,11 +12,16 @@
     },
     
     "hostConnection": {
-        "protocall": "htpp",
-        "ip": "192.168.31.130",
+        "protocall": "http",
+        "ip": "localhost",
         "poort": "8080"
     },
-    
+   
+    "getbalance": {
+        "bittrex": true,
+        "poloniex": false
+    },
+   
     "orders": {
         "bittrex": true,
         "poloniex": false

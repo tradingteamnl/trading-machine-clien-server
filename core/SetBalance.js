@@ -10,18 +10,13 @@ var fileLocation = JSON.parse(fs.readFileSync("./temp/fileLocation.txt")).file;
 //load scripts
 var bittrex = require(fileLocation+'/core/node.bittrex.api/node.bittrex.api.js');
 var ConsoleColor = require(fileLocation+'/ConsoleColor.js');
+var GetMacAdres = require(fileLocation+'/scripts/GetMacAdres.js');
 
 //configure
-bittrex.options({
-    'apikey' : config.bittrex.apiKey,
-    'apisecret' : config.bittrex.apiSecretKey,
-    'stream' : true,
-    'verbose' : false,
-    'cleartext' : false
-});
+bittrex.options(autoConfig.bittrexOptions());
 
 //Time reload
-//setInterval(function() {
+setInterval(function() {
 	
     //Request balance
     bittrex.getbalances( function( totaal_balance ) {
@@ -59,23 +54,28 @@ bittrex.options({
                 'Content-Type': 'application/x-www-form-urlencoded'
             };
             
+            //voeg data samen
+            var exportData = {
+                mac: GetMacAdres.getMacAdres(),
+                balanceData: memoryDB
+            };
+            
             // Configure the request
-            // http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/updatebalance
             var options = {
-                url: 'http://'+config.hostConnection.ip+':'+config.hostConnection.poort+'/api/updatebalance',
+                url: autoConfig.serverURL()+'/api/updatebalance',
                 method: 'POST',
                 headers: headers,
-                form: memoryDB
+                form: exportData
             };
-
+            
             // Start the request
             request(options, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    console.log(body);
+                    console.log("body "+body);
                 } else{
-                    console.log(error);
+                    console.log("error "+error);
                 }
             });
         } 
     });
-//}, 60000);
+}, 60000);
