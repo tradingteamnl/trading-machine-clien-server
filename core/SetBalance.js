@@ -11,9 +11,10 @@ var fileLocation = JSON.parse(fs.readFileSync("./temp/fileLocation.txt")).file;
 var bittrex = require(fileLocation+'/core/node.bittrex.api/node.bittrex.api.js');
 var ConsoleColor = require(fileLocation+'/ConsoleColor.js');
 var GetMacAdres = require(fileLocation+'/scripts/GetMacAdres.js');
+var ConfigGetter = require(fileLocation+'/configGetter.js');
 
 //configure
-bittrex.options(autoConfig.bittrexOptions());
+bittrex.options(ConfigGetter.bittrexOptions());
 
 //Time reload
 setInterval(function() {
@@ -62,7 +63,7 @@ setInterval(function() {
             
             // Configure the request
             var options = {
-                url: autoConfig.serverURL()+'/api/updatebalance',
+                url: ConfigGetter.serverURL()+'/api/updatebalance',
                 method: 'POST',
                 headers: headers,
                 form: exportData

@@ -15,7 +15,7 @@ var config = JSON.parse(fs.readFileSync(fileLocation+'/config.json'));
 var app = express();
 
 //load bittrex
-require('./core/balance.js');
+require('./core/SetBalance.js');
 
 //start server
 app.listen(config.hostPoort.poort, function(){
