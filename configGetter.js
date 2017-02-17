@@ -31,3 +31,8 @@ exports.bittrexOptions = function(){
     
     return bittrexOptions;
 };
+
+//getter voor de server url
+exports.bittrexFees = function(){
+    return config.fees.bittrex;
+};
